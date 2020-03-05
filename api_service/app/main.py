@@ -39,6 +39,27 @@ def index():
     return render_template("index.html", users=users_arr)
 
 
+@app.route("/api/users")
+def users():
+    users = User.select()
+    users_arr = []
+    for user in users:
+        user_dict = {"username": user.username,
+                     "hw_id": user.hw_id,
+                     "id": user.id}
+        try:
+            last_process = ProcessActivity.select().where(ProcessActivity.hw_id == user.hw_id) \
+                .order_by(ProcessActivity.id.desc()).get()
+            user_dict["mem"] = last_process.mem
+            user_dict["title"] = last_process.process_title
+            users_arr.append(user_dict)
+
+        except ProcessActivity.DoesNotExist:
+            continue
+
+    return jsonify(users_arr)
+
+
 @app.route("/api/resources_interval/<string:hw_id>")
 def resources_interval(hw_id):
     resources = ProcessActivity.select().where(ProcessActivity.hw_id == hw_id)
