@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<div class="page">
+
+    {% include 'includes/navbar.html' %}
+
+<main class="app-main">
+
+  <div class="main-wrap">
+    <div class="page-title">
+
+    </div>
+
+    <div class="main-content">
+      <div class="row flex-row">
+        <div class="col-12 col-md-4">
+          <div class="card border-light">
+            <div class="card-header">
+              <span>{{ user.username }}</span>
+            </div>
+
+            <div class="card-body">
+              <div class="card-item mb-3">
+                <span class="w-30">Time</span>
+                <span class="w-70">Application</span>
+              </div>
+              <div class="card-item pt-1 pb-1">
+                <span class="w-30">20:00</span>
+                <span class="w-70">Dota 2</span>
+              </div>
+              <div class="card-item pt-1 pb-1">
+                <span class="w-30">20:00</span>
+                <span class="w-70">Dota 2</span>
+              </div>
+              <div class="card-item pt-1 pb-1">
+                <span class="w-30">20:00</span>
+                <span class="w-70">Dota 2</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-8">
+          <div class="card border-light">
+            <div class="card-header" id="ures-name">
+              <span>Graph</span>
+            </div>
+
+            <canvas id="myChart" width="400" height="200"></canvas>
+
+          </div>
+
+          <div class="card border-light">
+
+            <div class="card-header card-sub-header">
+              <span>Preferences</span>
+            </div>
+
+            <div class="card-body">
+              <form>
+                <div class="form-group">
+                  <label for="dateInput">Date</label>
+                  <input type="date" class="form-control" id="dateInput" placeholder="Enter Date">
+                </div>
+
+                <div class="row">
+                  <div class="col-6">
+                      <label id="startInterval">0</label>
+                  </div>
+
+                  <div class="col-6">
+                      <label id="endInterval" class="float-right">0</label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div id="slider-range"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+</div>
+
+
+{% endblock %}

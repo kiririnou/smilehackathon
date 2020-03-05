@@ -8,19 +8,18 @@ class BaseModel(Model):
         database = db
 
 
+class User(BaseModel):
+    username = CharField(null=True)
+    hw_id = CharField(unique=True)
+
+
 class ProcessActivity(BaseModel):
     hw_id = CharField()
     start = DateTimeField()
     end = DateTimeField()
-    process_name = CharField()
+    mem = IntegerField()
     process_title = CharField()
 
 
-class ResourceUsage(BaseModel):
-    hw_id = CharField()
-    time = DateTimeField()
-    cpu = IntegerField()
-    mem = IntegerField()
+db.create_tables([ProcessActivity, User])
 
-
-db.create_tables([ProcessActivity, ResourceUsage])
