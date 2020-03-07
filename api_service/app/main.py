@@ -18,7 +18,7 @@ def user_required(f):
         except User.DoesNotExist:
             return jsonify({'error': 'User with specified hardware ID does not exist.'}), 404
 
-        return f(*args, **kwargs)
+        return f(hw_id, *args, **kwargs)
     return decorator
 
 
