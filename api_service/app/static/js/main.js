@@ -1,6 +1,6 @@
 function fmtTime(minutes){
   return Math.floor((minutes / 60)) + ":" + (minutes % 60);
-};
+}
 
 $(document).ready(function() {
   $( "#slider-range" ).slider({

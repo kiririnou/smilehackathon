@@ -18,6 +18,11 @@ def get_user(user_id):
         return jsonify({}), 404
 
 
+@app.route("/api")
+def api_docs():
+    return render_template('api-docs.html')
+
+
 @app.route("/")
 def index():
     users = User.select()
