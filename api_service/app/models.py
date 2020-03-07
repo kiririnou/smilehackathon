@@ -18,7 +18,7 @@ class User(BaseModel):
                      "id": self.id}
 
         try:
-            last_process = ActiveWindow.select().where(ActiveWindow.hw_id == user.hw_id) \
+            last_process = ActiveWindow.select().where(ActiveWindow.hw_id == self.hw_id) \
                 .order_by(ActiveWindow.id.desc()).get()
             user_dict["mem"] = last_process.mem
             user_dict["title"] = last_process.process_title
