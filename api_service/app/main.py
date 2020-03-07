@@ -115,7 +115,7 @@ class UsersAPI(MethodView):
         user_json = request.json
 
         try:
-            hw_id = str(user_json['hw_id'])
+            hw_id = str(user_json['hwId'])
             username = str(user_json['username'])
 
         except (ValueError, KeyError) as e:
