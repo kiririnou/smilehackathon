@@ -1,4 +1,5 @@
-from random import choice
+from functools import wraps
+
 
 from dateutil.parser import parse as parse_datetime
 from flask import Flask, request, jsonify, redirect
@@ -10,6 +11,7 @@ app = Flask(__name__)
 
 
 def user_required(f):
+    @wraps(f)
     def decorator(hw_id, *args, **kwargs):
         try:
             User.get(hw_id=hw_id)
