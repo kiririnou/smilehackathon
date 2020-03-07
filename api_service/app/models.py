@@ -20,7 +20,7 @@ class User(BaseModel):
         try:
             last_active_window = ActiveWindow.select().where(ActiveWindow.hw_id == self.hw_id) \
                 .order_by(ActiveWindow.id.desc()).get()
-            user_dict["title"] = last_active_window.process_title
+            user_dict["title"] = last_active_window.title
 
         except ActiveWindow.DoesNotExist:
             user_dict["title"] = "No process"
