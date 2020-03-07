@@ -149,7 +149,7 @@ class UsersAPI(MethodView):
 
 @app.route("/api/v1")
 def api_docs():
-    return redirect('https://app.swaggerhub.com/apis/gurland/smilehackathon/1.0.0#/')
+    return redirect('https://app.swaggerhub.com/apis-docs/gurland/smilehackathon/1.0.0#/')
 
 
 resource_usages_view = user_required(ResourceUsagesAPI.as_view('resource_usages'))
