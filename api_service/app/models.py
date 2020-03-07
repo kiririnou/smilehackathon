@@ -18,16 +18,22 @@ class User(BaseModel):
                      "id": self.id}
 
         try:
-            last_process = ActiveWindow.select().where(ActiveWindow.hw_id == self.hw_id) \
+            last_active_window = ActiveWindow.select().where(ActiveWindow.hw_id == self.hw_id) \
                 .order_by(ActiveWindow.id.desc()).get()
-            user_dict["mem"] = last_process.mem
-            user_dict["cpu"] = last_process.cpu
-            user_dict["title"] = last_process.process_title
+            user_dict["title"] = last_active_window.process_title
 
         except ActiveWindow.DoesNotExist:
+            user_dict["title"] = "No process"
+
+        try:
+            last_resource_usage = ResourceUsage.select().where(ResourceUsage.hw_id == self.hw_id) \
+                .order_by(ResourceUsage.id.desc()).get()
+            user_dict["mem"] = last_resource_usage.mem
+            user_dict["cpu"] = last_resource_usage.cpu
+
+        except ResourceUsage.DoesNotExist:
             user_dict["mem"] = 0
             user_dict["cpu"] = 0
-            user_dict["title"] = "No process"
 
         return user_dict
 
