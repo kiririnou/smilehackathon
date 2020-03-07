@@ -1,118 +1,165 @@
 from random import choice
 
-from flask import Flask, request, jsonify, render_template
+from dateutil.parser import parse as parse_datetime
+from flask import Flask, request, jsonify, redirect
+from flask.views import MethodView
 
-from models import ProcessActivity, User
+from models import User, ResourceUsage, ActiveWindow
 
 app = Flask(__name__)
 
-NAMES = ['Cloud', 'Lockpick', 'Carasique', 'Orange', 'Pineapple', 'Watermelon']
+
+def user_required(f):
+    def decorator(hw_id, *args, **kwargs):
+        try:
+            User.get(hw_id=hw_id)
+        except User.DoesNotExist:
+            return jsonify({'error': 'User with specified hardware ID does not exist.'}), 404
+
+        return f(*args, **kwargs)
+    return decorator
 
 
-@app.route("/get_user/<int:user_id>")
-def get_user(user_id):
-    try:
-        user = User.get(id=user_id)
-        return render_template("user.html", user=user)
-    except User.DoesNotExist:
-        return jsonify({}), 404
+class ResourceUsagesAPI(MethodView):
+    def get(self, hw_id):
+        response = []
+
+        try:
+            from_datetime = parse_datetime(request.args.get('from', "2020-01-01T00:00Z"))
+            to_datetime = parse_datetime(request.args.get('to', "2040-01-01T00:00Z"))
+
+        except ValueError as e:
+            return jsonify({'error': str(e)}), 400
+
+        resource_usages_query = ResourceUsage.select().where(
+            (ResourceUsage.hw_id == hw_id) & (ResourceUsage.time.between(from_datetime, to_datetime))
+        )
+
+        for resource_usage in resource_usages_query:
+            response.append(
+                [str(resource_usage.time), resource_usage.cpu, resource_usage.mem]
+            )
+
+        return jsonify(response), 200
+
+    def post(self, hw_id):
+        resource_usage = request.json
+
+        try:
+            time = parse_datetime(resource_usage['time'])
+            cpu = int(resource_usage['cpu'])
+            mem = int(resource_usage['mem'])
+
+        except (ValueError, KeyError) as e:
+            return jsonify({'error': f"{type(e).__name__} - {e}"}), 400
+
+        ResourceUsage.create(hw_id=hw_id, time=time, cpu=cpu, mem=mem)
 
 
-@app.route("/api")
+class ActiveWindowsAPI(MethodView):
+    def get(self, hw_id):
+        response = []
+
+        try:
+            from_datetime = parse_datetime(request.args.get('from', "2020-01-01T00:00Z"))
+            to_datetime = parse_datetime(request.args.get('to', "2040-01-01T00:00Z"))
+
+        except ValueError as e:
+            return jsonify({'error': str(e)}), 400
+
+        active_windows_query = ActiveWindow.select().where(
+            (ActiveWindow.hw_id == hw_id) & (ActiveWindow.start.between(from_datetime, to_datetime))
+        )
+
+        for active_window in active_windows_query:
+            response.append(
+                [str(active_window.start), str(active_window.end), active_window.title]
+            )
+
+        return jsonify(response)
+
+    def post(self, hw_id):
+        active_window = request.json
+
+        try:
+            start = parse_datetime(active_window['start'])
+            end = parse_datetime(active_window['end'])
+            title = str(active_window['title'])
+
+        except (ValueError, KeyError) as e:
+            return jsonify({'error': f"{type(e).__name__} - {e}"}), 400
+
+        ActiveWindow.create(hw_id=hw_id, start=start, end=end, title=title)
+        return jsonify({'message': "Active window created"}), 201
+
+
+class UsersAPI(MethodView):
+    def get(self, user_id):
+        if user_id is None:
+            users = User.select()
+            users_arr = []
+            for user in users:
+                users_arr.append(user.create_user_info_dict())
+
+            return jsonify(users_arr)
+        else:
+            try:
+                user = User.get(id=user_id)
+                return jsonify(user.create_user_info_dict())
+            except User.DoesNotExist:
+                return jsonify({'error': 'User not found'}), 404
+
+    def post(self):
+        user_json = request.json
+
+        try:
+            hw_id = str(user_json['hw_id'])
+            username = str(user_json['username'])
+
+        except (ValueError, KeyError) as e:
+            return jsonify({'error': f"{type(e).__name__} - {e}"}), 400
+
+        User.create(hw_id=hw_id, username=username)
+        return jsonify({'message': "User created"}), 201
+
+    def put(self, user_id):
+        try:
+            user = User.get(id=user_id)
+
+        except User.DoesNotExits:
+            return jsonify({'error': 'User does not exits'}), 404
+
+        change_username_json = request.json
+        try:
+            username = str(change_username_json['username'])
+
+        except (ValueError, KeyError) as e:
+            return jsonify({'error': f"{type(e).__name__} - {e}"}), 400
+
+        user.username = username
+        user.save()
+        return jsonify({'message': "Username changed"}), 200
+
+
+@app.route("/api/v1")
 def api_docs():
-    return render_template('api-docs.html')
+    return redirect('https://app.swaggerhub.com/apis/gurland/smilehackathon/1.0.0#/')
 
 
-@app.route("/")
-def index():
-    users = User.select()
-    users_arr = []
-    for user in users:
-        user_dict = {"username": user.username,
-                     "hw_id": user.hw_id,
-                     "id": user.id}
-        try:
-            last_process = ProcessActivity.select().where(ProcessActivity.hw_id == user.hw_id)\
-                .order_by(ProcessActivity.id.desc()).get()
-            user_dict["mem"] = last_process.mem
-            user_dict["title"] = last_process.process_title
-            users_arr.append(user_dict)
+resource_usages_view = user_required(ResourceUsagesAPI.as_view('resource_usages'))
+active_windows_view = user_required(ActiveWindowsAPI.as_view('active_windows'))
+users_view = UsersAPI.as_view('users')
 
-        except ProcessActivity.DoesNotExist:
-            continue
+app.add_url_rule('/api/v1/resource-usages/<string:hw_id>', view_func=resource_usages_view, methods=['GET', 'POST'])
+app.add_url_rule('/api/v1/active-windows/<string:hw_id>', view_func=active_windows_view, methods=['GET', 'POST'])
 
-    return render_template("index.html", users=users_arr)
+app.add_url_rule('/api/v1/users', defaults={'user_id': None},
+                 view_func=users_view, methods=['GET'])
 
+app.add_url_rule('/api/v1/users', view_func=users_view, methods=['POST'])
 
-@app.route("/api/users")
-def users():
-    users = User.select()
-    users_arr = []
-    for user in users:
-        user_dict = {"username": user.username,
-                     "hw_id": user.hw_id,
-                     "id": user.id}
-        try:
-            last_process = ProcessActivity.select().where(ProcessActivity.hw_id == user.hw_id) \
-                .order_by(ProcessActivity.id.desc()).get()
-            user_dict["mem"] = last_process.mem
-            user_dict["title"] = last_process.process_title
-            users_arr.append(user_dict)
-
-        except ProcessActivity.DoesNotExist:
-            continue
-
-    return jsonify(users_arr)
-
-
-@app.route("/api/resources_interval/<string:hw_id>")
-def resources_interval(hw_id):
-    resources = ProcessActivity.select().where(ProcessActivity.hw_id == hw_id)
-    times = []
-    for activity in resources:
-        times.append([activity.start.strftime("%H:%M:%S"), activity.mem, activity.process_title])
-
-    return jsonify(times)
-
-
-@app.route("/api/avg_interval/<string:hw_id>")
-def avg_interval(hw_id):
-    resources = ProcessActivity.select().where(ProcessActivity.hw_id == hw_id)
-    proc_dict = {}
-
-    for activity in resources:
-        proc_dict.setdefault(activity.process_title, 0)
-        proc_dict[activity.process_title] += (activity.end - activity.start).seconds
-
-    return jsonify(proc_dict)
-
-
-@app.route("/api/process_activity", methods=['POST'])
-def process_activity():
-    if request.json:
-        content = request.json
-
-        hw_id = content.get('hw_id')
-        start = content.get('start')
-        end = content.get('end')
-        mem = content.get('mem')
-        process_title = content.get('process_title')
-
-        user, created = User.get_or_create(hw_id=hw_id)
-        if created:
-            user.username = choice(NAMES)
-            user.save()
-
-        ProcessActivity.create(hw_id=hw_id,
-                               start=start,
-                               end=end,
-                               mem=mem,
-                               process_title=process_title)
-
-        return jsonify({}), 201
-
-    else:
-        return jsonify({}), 404
+app.add_url_rule('/api/v1/users/<int:user_id>', view_func=users_view,
+                 methods=['GET', 'PUT', 'DELETE'])
 
 
 if __name__ == "__main__":

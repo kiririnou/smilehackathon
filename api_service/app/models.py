@@ -12,14 +12,37 @@ class User(BaseModel):
     username = CharField(null=True)
     hw_id = CharField(unique=True)
 
+    def create_user_info_dict(self):
+        user_dict = {"username": self.username,
+                     "hw_id": self.hw_id,
+                     "id": self.id}
 
-class ProcessActivity(BaseModel):
+        try:
+            last_process = ActiveWindow.select().where(ActiveWindow.hw_id == user.hw_id) \
+                .order_by(ActiveWindow.id.desc()).get()
+            user_dict["mem"] = last_process.mem
+            user_dict["title"] = last_process.process_title
+
+        except ActiveWindow.DoesNotExist:
+            user_dict["mem"] = 0
+            user_dict["title"] = "No process"
+
+        return user_dict
+
+
+class ActiveWindow(BaseModel):
     hw_id = CharField()
     start = DateTimeField()
     end = DateTimeField()
+    title = CharField()
+
+
+class ResourceUsage(BaseModel):
+    hw_id = CharField()
+    time = DateTimeField()
+    cpu = IntegerField()
     mem = IntegerField()
-    process_title = CharField()
 
 
-db.create_tables([ProcessActivity, User])
+db.create_tables([ActiveWindow, ResourceUsage, User])
 
