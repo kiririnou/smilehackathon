@@ -4,5 +4,7 @@ services:
     build: ./api_service/
     ports:
       - "1488:80"
+    volumes:
+      - ./api_service/app:/app
   redis:
     image: "redis:alpine"
