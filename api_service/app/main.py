@@ -56,6 +56,7 @@ class ResourceUsagesAPI(MethodView):
             return jsonify({'error': f"{type(e).__name__} - {e}"}), 400
 
         ResourceUsage.create(hw_id=hw_id, time=time, cpu=cpu, mem=mem)
+        return jsonify({'message': "Resource usage created"}), 201
 
 
 class ActiveWindowsAPI(MethodView):
