@@ -6,7 +6,8 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -33,12 +34,15 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'bundle.css'
+            filename: 'styles.css'
         })
     ],
     devServer: {
-        contentBase: path.join(__dirname, 'public'),
+        contentBase: path.resolve(__dirname, 'public'),
         compress: true,
-        port: 9000
+        port: 9000,
+        hot: true,
+        watchContentBase: true,
+        publicPath: '/dist/'
     }
 };
