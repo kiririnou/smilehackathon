@@ -1,6 +1,6 @@
 from functools import wraps
 
-
+from peewee import IntegrityError
 from dateutil.parser import parse as parse_datetime
 from flask import Flask, request, jsonify, redirect
 from flask.views import MethodView
@@ -121,7 +121,10 @@ class UsersAPI(MethodView):
         except (ValueError, KeyError) as e:
             return jsonify({'error': f"{type(e).__name__} - {e}"}), 400
 
-        User.create(hw_id=hw_id, username=username)
+        try:
+            User.create(hw_id=hw_id, username=username)
+        except IntegrityError as e:
+            return jsonify({"error": "User already exists"}), 409
         return jsonify({'message': "User created"}), 201
 
     def put(self, user_id):
