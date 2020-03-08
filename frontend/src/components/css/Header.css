@@ -1,5 +1,8 @@
 .navbar{
     background-color: #4d4646;
+    position: fixed!important;
+    width: 100%;
+    z-index: 30;
 }
 
 .navbar-brand span{
