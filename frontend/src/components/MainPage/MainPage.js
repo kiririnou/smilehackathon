@@ -11,8 +11,6 @@ class MainPage extends Component {
             users: []
         };
 
-        this.interval = null;
-
         this._users = [
             {
                 "cpu": 55,
@@ -116,16 +114,20 @@ class MainPage extends Component {
 
     fetchUsers = () => {
         // todo: change url before prod
-        fetch('http://51.158.177.205:1488/api/v1/users')
+        fetch('some-url.xyz/api/v1/users')
             .then(res => res.json())
-            .then(users => this.setState({users}))
-            .catch(e => clearInterval(this.interval))
+            .then(users => {
+                this.setState({users});
+                setTimeout(this.fetchUsers, 1000);
+            })
+            .catch(e => {
+                console.log(e);
+                setTimeout(this.fetchUsers, 1000);
+            })
     };
 
     componentDidMount() {
-        // todo: uncomment before prod
-        // this.interval = setInterval(this.fetchUsers, 500)
-
+        // todo: run fetchUsers() on mount
     }
 
     render() {
