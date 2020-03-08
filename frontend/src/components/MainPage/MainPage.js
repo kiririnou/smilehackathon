@@ -109,7 +109,9 @@ class MainPage extends Component {
                 "username": "Suck-PC"
             },
 
-        ]
+        ];
+
+        this.timeout = null;
     }
 
     fetchUsers = () => {
@@ -118,16 +120,20 @@ class MainPage extends Component {
             .then(res => res.json())
             .then(users => {
                 this.setState({users});
-                setTimeout(this.fetchUsers, 1000);
+                this.timeout = setTimeout(this.fetchUsers, 500);
             })
             .catch(e => {
                 console.log(e);
-                setTimeout(this.fetchUsers, 1000);
+                this.timeout = setTimeout(this.fetchUsers, 500);
             })
     };
 
     componentDidMount() {
         // todo: run fetchUsers() on mount
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.timeout);
     }
 
     render() {
