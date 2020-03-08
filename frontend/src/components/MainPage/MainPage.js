@@ -1,4 +1,4 @@
-import React, {Component, useReducer} from 'react';
+import React, {Component} from 'react';
 import UserCard from "./UserCard";
 
 import './css/MainPage.css'
