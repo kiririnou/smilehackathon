@@ -18,9 +18,9 @@ function UserCard(props) {
                     {username}
                 </Card.Title>
                 <Card.Text>
-                    <p className={'card-item'}>id: {hw_id}</p>
-                    <p className={'card-item'}>Memory usage: {mem}</p>
-                    <p className={'card-item'}>Active process: {title}</p>
+                    <p className={'card-item hw_id'}>id: {hw_id}</p>
+                    <p className={'card-item mem'}>Memory usage: {mem}</p>
+                    <p title={title} className={'card-item active-process'}>Active process: {title}</p>
                 </Card.Text>
                 <Card.Link href={'/user/__id__'}>
                     Details

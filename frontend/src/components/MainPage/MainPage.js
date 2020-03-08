@@ -19,7 +19,7 @@ class MainPage extends Component {
                 "hw_id": "TESTID",
                 "id": 1,
                 "mem": 89,
-                "title": "Dota 2",
+                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
                 "username": "Suck-PC"
             },
             {
@@ -27,7 +27,7 @@ class MainPage extends Component {
                 "hw_id": "TESTID",
                 "id": 1,
                 "mem": 89,
-                "title": "Dota 2",
+                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
                 "username": "Suck-PC"
             },
             {
@@ -35,7 +35,7 @@ class MainPage extends Component {
                 "hw_id": "TESTID",
                 "id": 1,
                 "mem": 89,
-                "title": "Dota 2",
+                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
                 "username": "Suck-PC"
             },
             {
@@ -43,7 +43,7 @@ class MainPage extends Component {
                 "hw_id": "TESTID",
                 "id": 1,
                 "mem": 89,
-                "title": "Dota 2",
+                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
                 "username": "Suck-PC"
             },
             {
@@ -51,7 +51,7 @@ class MainPage extends Component {
                 "hw_id": "TESTID",
                 "id": 1,
                 "mem": 89,
-                "title": "Dota 2",
+                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
                 "username": "Suck-PC"
             },
             {
@@ -59,7 +59,7 @@ class MainPage extends Component {
                 "hw_id": "TESTID",
                 "id": 1,
                 "mem": 89,
-                "title": "Dota 2",
+                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
                 "username": "Suck-PC"
             },
             {
@@ -67,7 +67,7 @@ class MainPage extends Component {
                 "hw_id": "TESTID",
                 "id": 1,
                 "mem": 89,
-                "title": "Dota 2",
+                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
                 "username": "Suck-PC"
             },
             {
@@ -75,9 +75,42 @@ class MainPage extends Component {
                 "hw_id": "TESTID",
                 "id": 1,
                 "mem": 89,
-                "title": "Dota 2",
+                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
                 "username": "Suck-PC"
             },
+            {
+                "cpu": 55,
+                "hw_id": "TESTID",
+                "id": 1,
+                "mem": 89,
+                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
+                "username": "Suck-PC"
+            },
+            {
+                "cpu": 55,
+                "hw_id": "TESTID",
+                "id": 1,
+                "mem": 89,
+                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
+                "username": "Suck-PC"
+            },
+            {
+                "cpu": 55,
+                "hw_id": "TESTID",
+                "id": 1,
+                "mem": 89,
+                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
+                "username": "Suck-PC"
+            },
+            {
+                "cpu": 55,
+                "hw_id": "TESTID",
+                "id": 1,
+                "mem": 89,
+                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
+                "username": "Suck-PC"
+            },
+
         ]
     }
 
