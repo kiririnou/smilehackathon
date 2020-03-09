@@ -24,7 +24,6 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                exclude: /(node_modules|dist|public)/,
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader'
@@ -43,6 +42,7 @@ module.exports = {
         port: 9000,
         hot: true,
         watchContentBase: true,
-        publicPath: '/dist/'
+        publicPath: '/dist/',
+        host: '0.0.0.0'
     }
 };
