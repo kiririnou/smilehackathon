@@ -1,0 +1,7 @@
+#info-page{
+    padding-top: 3.5rem;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 3fr 1fr;
+    height: 100vh;
+}

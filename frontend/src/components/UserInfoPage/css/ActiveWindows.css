@@ -1,0 +1,11 @@
+#active-windows{
+    overflow-y: auto;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+}
+
+#active-windows #columns{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
