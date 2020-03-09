@@ -2,3 +2,25 @@
     grid-column: 1;
     grid-row: 2;
 }
+
+#date-input{
+    margin-bottom: 1rem;
+    width: 20%;
+    margin-right: 2rem;
+}
+
+#date-controls{
+    display: flex;
+}
+
+#date-controls #date-from, #date-controls #date-to{
+    width: 25%;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+#submit-date-btn{
+    height: 100%;
+    width: 10%;
+    margin-left: 3rem;
+}
