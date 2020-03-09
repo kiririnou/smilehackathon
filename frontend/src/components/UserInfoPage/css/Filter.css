@@ -24,3 +24,10 @@
     width: 20%;
     margin-left: 4.5rem;
 }
+
+@media (max-width: 1024px){
+    #filter{
+        grid-column: 1;
+        grid-row: 2;
+    }
+}

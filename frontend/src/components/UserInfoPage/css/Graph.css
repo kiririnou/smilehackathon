@@ -2,3 +2,11 @@
     grid-column: 1;
     grid-row: 1;
 }
+
+@media (max-width: 1024px){
+    #graph{
+        grid-column: 1;
+        grid-row: 1;
+        height: unset;
+    }
+}
