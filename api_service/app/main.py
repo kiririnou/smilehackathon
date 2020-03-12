@@ -4,10 +4,12 @@ from peewee import IntegrityError
 from dateutil.parser import parse as parse_datetime
 from flask import Flask, request, jsonify, redirect
 from flask.views import MethodView
+from flask_cors import CORS
 
 from models import User, ResourceUsage, ActiveWindow
 
 app = Flask(__name__)
+CORS(app)
 
 
 def user_required(f):
