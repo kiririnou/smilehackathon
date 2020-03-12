@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import UserCard from "./UserCard";
 
 import './css/MainPage.css'
+import {mockUsers} from '../../_mockData';
 
 class MainPage extends Component {
     constructor(props) {
@@ -11,105 +12,6 @@ class MainPage extends Component {
             users: []
         };
 
-        this._users = [
-            {
-                "cpu": 55,
-                "hw_id": "TESTID",
-                "id": 1,
-                "mem": 89,
-                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
-                "username": "Suck-PC"
-            },
-            {
-                "cpu": 55,
-                "hw_id": "TESTID",
-                "id": 1,
-                "mem": 89,
-                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
-                "username": "Suck-PC"
-            },
-            {
-                "cpu": 55,
-                "hw_id": "TESTID",
-                "id": 1,
-                "mem": 89,
-                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
-                "username": "Suck-PC"
-            },
-            {
-                "cpu": 55,
-                "hw_id": "TESTID",
-                "id": 1,
-                "mem": 89,
-                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
-                "username": "Suck-PC"
-            },
-            {
-                "cpu": 55,
-                "hw_id": "TESTID",
-                "id": 1,
-                "mem": 89,
-                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
-                "username": "Suck-PC"
-            },
-            {
-                "cpu": 55,
-                "hw_id": "TESTID",
-                "id": 1,
-                "mem": 89,
-                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
-                "username": "Suck-PC"
-            },
-            {
-                "cpu": 55,
-                "hw_id": "TESTID",
-                "id": 1,
-                "mem": 89,
-                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
-                "username": "Suck-PC"
-            },
-            {
-                "cpu": 55,
-                "hw_id": "TESTID",
-                "id": 1,
-                "mem": 89,
-                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
-                "username": "Suck-PC"
-            },
-            {
-                "cpu": 55,
-                "hw_id": "TESTID",
-                "id": 1,
-                "mem": 89,
-                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
-                "username": "Suck-PC"
-            },
-            {
-                "cpu": 55,
-                "hw_id": "TESTID",
-                "id": 1,
-                "mem": 89,
-                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
-                "username": "Suck-PC"
-            },
-            {
-                "cpu": 55,
-                "hw_id": "TESTID",
-                "id": 1,
-                "mem": 89,
-                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
-                "username": "Suck-PC"
-            },
-            {
-                "cpu": 55,
-                "hw_id": "TESTID",
-                "id": 1,
-                "mem": 89,
-                "title": "Dota 2 qwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqwqwqqqwqwqwqwqwqwqw",
-                "username": "Suck-PC"
-            },
-
-        ];
 
         this.timeout = null;
     }
@@ -139,7 +41,7 @@ class MainPage extends Component {
     render() {
         return (
             <div id={'main-page'}>
-                {this._users.map(user =>
+                {mockUsers.map(user =>
                     <UserCard username={user.username}
                               hw_id={user.hw_id}
                               mem={user.mem}
