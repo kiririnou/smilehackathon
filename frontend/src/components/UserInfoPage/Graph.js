@@ -47,7 +47,7 @@ function Graph(props){
                 }
             }]
         },
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         elements: {
             line: {
                 tension: 0, // disables bezier curves

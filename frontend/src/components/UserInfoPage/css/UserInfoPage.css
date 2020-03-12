@@ -9,7 +9,6 @@
 @media (max-width: 1024px){
     #info-page{
         grid-template-columns: 1fr;
-        grid-template-rows: 3fr 1fr 2fr;
-        height: unset;
+        grid-template-rows: 1fr 0.5fr 1fr;
     }
 }
