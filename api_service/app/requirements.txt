@@ -1,3 +1,4 @@
 peewee
 psycopg2-binary
 python-dateutil
+flask-cors
