@@ -44,7 +44,7 @@ export default function(props){
                                    marks={getTimeMarks()}
                                    defaultValue={[0, 1440]}
                                    step={1}
-                                   pushable={12}
+                                   pushable={1}
                                    onChange={sliderChangeHandler}
                                    onAfterChange={() => {rangeChanged(true)}}
                             />
