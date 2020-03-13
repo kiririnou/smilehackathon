@@ -27,3 +27,13 @@ export function formatUsageData(data) {
 
     return formattedUsageData;
 }
+
+export function formatRequestParams(date, {from, to}) {
+    const rawFrom = `${date} ${formatTime(from)}:00`;
+    const rawTo = `${date} ${formatTime(to)}:00`;
+
+    const formattedFrom = rawFrom.replace(' ', '%20').replace(':', '%3A');
+    const formattedTo = rawTo.replace(' ', '%20').replace(':', '%3A');
+
+    return {formattedFrom, formattedTo};
+}

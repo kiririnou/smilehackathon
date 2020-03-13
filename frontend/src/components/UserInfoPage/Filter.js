@@ -22,7 +22,10 @@ export default function(props){
                         <Form.Group>
                             <div id={'date-controls'}>
                                 <div className="date-controls-wrapper">
-                                    <Form.Control type={'date'} id={'date-input'}/>
+                                    <Form.Control type={'date'}
+                                                  id={'date-input'}
+                                                  value={props.date}
+                                                  onChange={props.dateChangeHandler}/>
                                     <Form.Control type={'text'} id={'date-from'} value={formatTime(from)}/>
                                     <Form.Control type={'text'} id={'date-to'} value={formatTime(to)}/>
                                 </div>
@@ -32,7 +35,7 @@ export default function(props){
                                         onClick={buttonClickHandler}>Update</Button>
                             </div>
                             <Range min={0}
-                                   max={1440}
+                                   max={1439}
                                    defaultValue={[0, 1440]}
                                    step={1}
                                    pushable={1}

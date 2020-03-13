@@ -8,6 +8,33 @@
     width: 100%;
     display: flex;
     flex-direction: row;
+    margin-bottom: 1rem;
+}
+
+#active-windows #windows{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+}
+
+#active-windows #windows .window{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.5rem;
+}
+
+.window-time{
+    width: 35%;
+    font-style: italic;
+}
+
+.window-title{
+    width: 65%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 @media (max-width: 1024px){

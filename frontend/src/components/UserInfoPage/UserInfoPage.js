@@ -3,22 +3,23 @@ import React, {useEffect, useState} from 'react';
 import Graph from "./Graph";
 import ActiveWindows from "./ActiveWindows";
 import Filter from "./Filter";
-import {formatUsageData, unformatTime} from "../../utils";
+import {formatRequestParams, formatUsageData, unformatTime} from "../../utils";
 import {mockUsageData} from '../../_mockData';
 
 import './css/UserInfoPage.css';
 
+// todo remove mock data on prod
 
 function UserInfoPage(props){
     let _hasRangeChanged = false;
-    const handles = React.createRef();
-
-    // todo remove mock data on prod
+    const handlesRef = React.createRef();
 
     const [timeRange, setTimeRange] = useState({
         from: 0,
-        to: 1440
+        to: 1439
     });
+
+    const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
 
     const [usageData, setUsageData] = useState({
         cpu: [],
@@ -28,13 +29,17 @@ function UserInfoPage(props){
     const [activeWindows, setActiveWindows] = useState([]);
 
     const handleSliderChange = () => {
-        const from = handles.current.handlesRefs['0'].props.value;
-        const to = handles.current.handlesRefs['1'].props.value;
+        const from = handlesRef.current.handlesRefs['0'].props.value;
+        const to = handlesRef.current.handlesRefs['1'].props.value;
 
         setTimeRange({
             from,
             to
         });
+    };
+
+    const handleDateChange = (e) => {
+        setDate(e.target.value);
     };
 
     const rangeChanged = (value) => {
@@ -45,20 +50,21 @@ function UserInfoPage(props){
         e.preventDefault();
 
         if(_hasRangeChanged){
-            _fetchUsageDataMock(timeRange);
+            // todo replace fetchUsageDataMock() with fetchUsageData()
+            fetchUsageData(timeRange);
+            fetchActiveWindows(timeRange);
             rangeChanged(false);
         }
     };
 
     const fetchUsageData = ({from, to}) => {
+        const {formattedFrom, formattedTo} = formatRequestParams(date, {from, to});
+        const requestStr = `http://51.158.177.205:1488/api/v1/resource-usages/TESTID?from=${formattedFrom}&to=${formattedTo}`;
+
         // todo replace with real api url
-        fetch('api_url', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+        fetch(requestStr)
             .then(r => r.json())
+            .then(usageData => formatUsageData(usageData))
             .then(usageData => setUsageData(usageData))
     };
 
@@ -72,20 +78,26 @@ function UserInfoPage(props){
         setUsageData(usageData);
     };
 
-    const fetchActiveWindows = () => {
+    const fetchActiveWindows = ({from, to}) => {
+        const {formattedFrom, formattedTo} = formatRequestParams(date, {from, to});
+        const requestStr = `http://51.158.177.205:1488/api/v1/active-windows/TESTID?from=${formattedFrom}&to=${formattedTo}`;
 
-    };
-
-    const _fetchActiveWindowsMock = () => {
-
+        // todo replace with real api url
+        fetch(requestStr)
+            .then(r => r.json())
+            .then(activeWindows => setActiveWindows(activeWindows))
     };
 
     useEffect(() => {
-        // todo replace fetchUsageDataMock() with fetchUsageData()
-        _fetchUsageDataMock(timeRange);
+        // todo replace _fetchUsageDataMock() with fetchUsageData()
+        fetchUsageData(timeRange);
         // todo replace _fetchActiveWindowsMock() with fetchActiveWindows()
-        _fetchActiveWindowsMock();
+        fetchActiveWindows(timeRange);
     }, []);
+
+    useEffect(() => {
+        rangeChanged(true);
+    }, [date]);
 
     return (
         <div id={'info-page'}>
@@ -94,8 +106,10 @@ function UserInfoPage(props){
                     buttonClickHandler={handleButtonClick}
                     timeRange={timeRange}
                     rangeChanged={rangeChanged}
-                    handlesRefs={handles}/>
-            <ActiveWindows/>
+                    handlesRefs={handlesRef}
+                    date={date}
+                    dateChangeHandler={handleDateChange}/>
+            <ActiveWindows windows={activeWindows}/>
         </div>
     );
 
