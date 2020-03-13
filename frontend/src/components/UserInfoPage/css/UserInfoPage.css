@@ -9,19 +9,20 @@
 @media (max-width: 1024px){
     #info-page{
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 0.5fr 1fr;
+        grid-template-rows: 1fr 0.5fr 3fr;
     }
 }
 
 @media (max-width: 768px){
     #info-page{
-        height: unset;
+        height: 120vh;
     }
 }
 
 @media (max-width: 450px){
     #info-page{
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr 2fr;
+        grid-template-rows: 0.8fr 1fr 2fr;
+        height: 200vh;
     }
 }
