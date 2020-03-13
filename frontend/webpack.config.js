@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
+    // todo change to production
     mode: 'development',
     entry: './src/index.js',
     output: {
@@ -43,6 +44,7 @@ module.exports = {
         hot: true,
         watchContentBase: true,
         publicPath: '/dist/',
-        host: '0.0.0.0'
+        host: '0.0.0.0',
+        historyApiFallback: true
     }
 };

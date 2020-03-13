@@ -1,4 +1,5 @@
 import React from 'react';
+import {Route, Switch} from 'react-router-dom';
 
 import Header from "./Header";
 import MainPage from "./MainPage/MainPage";
@@ -11,8 +12,18 @@ export default function (props) {
     return (
         <div id={'app'}>
             <Header/>
-            {/*<MainPage/>*/}
-            <UserInfoPage/>
+            <Switch>
+                {/*<Route path={'/'}>*/}
+                {/*    <MainPage/>*/}
+                {/*</Route>*/}
+                {/*<Route path={'/user/:id'}>*/}
+                {/*    <UserInfoPage/>*/}
+                {/*</Route>*/}
+                <Route exact path={'/'} component={MainPage}/>
+                <Route path={'/user/:userId'}>
+                    <UserInfoPage/>
+                </Route>
+            </Switch>
         </div>
     )
 }

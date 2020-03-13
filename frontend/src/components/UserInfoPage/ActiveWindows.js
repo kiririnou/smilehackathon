@@ -22,9 +22,9 @@ export default function ActiveWindows(props){
                     <hr/>
                     <div id="windows">
                         {
-                            props.windows.map(window => {
+                            props.windows.map((window, idx) => {
                                 return (
-                                    <div className="window">
+                                    <div className="window" key={idx}>
                                         <span className={'window-time'}>{_formatUsageTime(window[0])} - {_formatUsageTime(window[1])}</span>
                                         <span className={'window-title'} title={window[2]}>{window[2]}</span>
                                     </div>

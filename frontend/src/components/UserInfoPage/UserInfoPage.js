@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {useParams} from 'react-router-dom';
 
 import Graph from "./Graph";
 import ActiveWindows from "./ActiveWindows";
@@ -17,21 +18,19 @@ function UserInfoPage(props){
         _hasRangeChanged = value;
     };
 
+    const {userId} = useParams();
     const handlesRef = React.createRef();
-
     const [timeRange, setTimeRange] = useState({
         from: 0,
         to: 1439
     });
-
     const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
-
     const [usageData, setUsageData] = useState({
         cpu: [],
         mem: []
     });
-
     const [activeWindows, setActiveWindows] = useState([]);
+
 
     const handleSliderChange = () => {
         const from = handlesRef.current.handlesRefs['0'].props.value;
@@ -60,13 +59,14 @@ function UserInfoPage(props){
 
     const fetchUsageData = ({from, to}) => {
         const {formattedFrom, formattedTo} = formatRequestParams(date, {from, to});
-        const requestStr = `http://51.158.177.205:1488/api/v1/resource-usages/TESTID2?from=${formattedFrom}&to=${formattedTo}`;
+        const requestStr = `http://51.158.177.205:1488/api/v1/resource-usages/${userId}?from=${formattedFrom}&to=${formattedTo}`;
 
         // todo replace with real api url
         fetch(requestStr)
             .then(r => r.json())
             .then(usageData => formatUsageData(usageData))
             .then(usageData => setUsageData(usageData))
+            .catch(e => console.log(e))
     };
 
     const _fetchUsageDataMock = ({from, to}) => {
@@ -81,12 +81,13 @@ function UserInfoPage(props){
 
     const fetchActiveWindows = ({from, to}) => {
         const {formattedFrom, formattedTo} = formatRequestParams(date, {from, to});
-        const requestStr = `http://51.158.177.205:1488/api/v1/active-windows/TESTID2?from=${formattedFrom}&to=${formattedTo}`;
+        const requestStr = `http://51.158.177.205:1488/api/v1/active-windows/${userId}?from=${formattedFrom}&to=${formattedTo}`;
 
         // todo replace with real api url
         fetch(requestStr)
             .then(r => r.json())
             .then(activeWindows => setActiveWindows(activeWindows))
+            .catch(e => console.log(e))
     };
 
     useEffect(() => {

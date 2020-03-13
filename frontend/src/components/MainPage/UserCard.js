@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from "react-bootstrap/Card";
+import {Link} from "react-router-dom";
 
 import './css/UserCard.css';
 
@@ -22,7 +23,7 @@ function UserCard(props) {
                     <p className={'card-item mem'}>Memory usage: {mem}</p>
                     <p title={title} className={'card-item active-process'}>Active process: {title}</p>
                 </Card.Text>
-                <Card.Link href={'/user/__id__'}>
+                <Card.Link href={`/user/${hw_id}`}>
                     Details
                 </Card.Link>
             </Card.Body>
