@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import UserCard from "./UserCard";
 
 import './css/MainPage.css'
-import {mockUsers} from '../../_mockData';
 
 function MainPage(props) {
     let _timeout = null;
@@ -10,7 +9,7 @@ function MainPage(props) {
 
     const fetchUsers = () => {
         // todo: change url before prod
-        fetch('some-url.xyz/api/v1/users')
+        fetch('http://51.158.177.205:1488/api/v1/users')
             .then(res => res.json())
             .then(users => {
                 setUsers(users);
@@ -23,7 +22,7 @@ function MainPage(props) {
     };
 
     useEffect(() => {
-        // todo: run fetchUsers() on mount
+        fetchUsers();
         return () => {
             clearTimeout(_timeout);
         }
@@ -31,8 +30,7 @@ function MainPage(props) {
 
     return (
         <div id={'main-page'}>
-            // todo replace mockUsers with users
-            {mockUsers.map(user =>
+            {users.map(user =>
                 <UserCard username={user.username}
                           hw_id={user.hw_id}
                           mem={user.mem}
