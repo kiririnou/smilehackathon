@@ -12,6 +12,11 @@ import './css/UserInfoPage.css';
 
 function UserInfoPage(props){
     let _hasRangeChanged = false;
+
+    const rangeChanged = (value) => {
+        _hasRangeChanged = value;
+    };
+
     const handlesRef = React.createRef();
 
     const [timeRange, setTimeRange] = useState({
@@ -40,10 +45,6 @@ function UserInfoPage(props){
 
     const handleDateChange = (e) => {
         setDate(e.target.value);
-    };
-
-    const rangeChanged = (value) => {
-        _hasRangeChanged = value;
     };
 
     const handleButtonClick = (e) => {
