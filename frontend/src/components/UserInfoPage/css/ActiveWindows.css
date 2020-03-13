@@ -31,10 +31,11 @@
 }
 
 .window-title{
-    width: 65%;
+    width: 60%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-left: 1rem;
 }
 
 @media (max-width: 1024px){

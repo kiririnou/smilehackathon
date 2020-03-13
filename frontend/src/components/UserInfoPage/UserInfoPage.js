@@ -60,7 +60,7 @@ function UserInfoPage(props){
 
     const fetchUsageData = ({from, to}) => {
         const {formattedFrom, formattedTo} = formatRequestParams(date, {from, to});
-        const requestStr = `http://51.158.177.205:1488/api/v1/resource-usages/TESTID?from=${formattedFrom}&to=${formattedTo}`;
+        const requestStr = `http://51.158.177.205:1488/api/v1/resource-usages/TESTID2?from=${formattedFrom}&to=${formattedTo}`;
 
         // todo replace with real api url
         fetch(requestStr)
@@ -81,7 +81,7 @@ function UserInfoPage(props){
 
     const fetchActiveWindows = ({from, to}) => {
         const {formattedFrom, formattedTo} = formatRequestParams(date, {from, to});
-        const requestStr = `http://51.158.177.205:1488/api/v1/active-windows/TESTID?from=${formattedFrom}&to=${formattedTo}`;
+        const requestStr = `http://51.158.177.205:1488/api/v1/active-windows/TESTID2?from=${formattedFrom}&to=${formattedTo}`;
 
         // todo replace with real api url
         fetch(requestStr)
