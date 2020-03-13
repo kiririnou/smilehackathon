@@ -11,7 +11,7 @@ import './css/UserInfoPage.css';
 
 function UserInfoPage(props){
     let _hasRangeChanged = false;
-    const handlers = document.getElementsByClassName('rc-slider-handle');
+    const handles = React.createRef();
 
     // todo remove mock data on prod
 
@@ -25,9 +25,11 @@ function UserInfoPage(props){
         mem: []
     });
 
+    const [activeWindows, setActiveWindows] = useState([]);
+
     const handleSliderChange = () => {
-        const from = parseInt(handlers[0].getAttribute('aria-valuenow'));
-        const to = parseInt(handlers[1].getAttribute('aria-valuenow'));
+        const from = handles.current.handlesRefs['0'].props.value;
+        const to = handles.current.handlesRefs['1'].props.value;
 
         setTimeRange({
             from,
@@ -43,7 +45,7 @@ function UserInfoPage(props){
         e.preventDefault();
 
         if(_hasRangeChanged){
-            fetchUsageDataMock(timeRange);
+            _fetchUsageDataMock(timeRange);
             rangeChanged(false);
         }
     };
@@ -60,7 +62,7 @@ function UserInfoPage(props){
             .then(usageData => setUsageData(usageData))
     };
 
-    const fetchUsageDataMock = ({from, to}) => {
+    const _fetchUsageDataMock = ({from, to}) => {
         const fetchedMock = mockUsageData.filter(data => {
             const time = unformatTime(data[0].split(' ')[1]);
             return (time >= from) && (time <= to);
@@ -70,9 +72,19 @@ function UserInfoPage(props){
         setUsageData(usageData);
     };
 
+    const fetchActiveWindows = () => {
+
+    };
+
+    const _fetchActiveWindowsMock = () => {
+
+    };
+
     useEffect(() => {
         // todo replace fetchUsageDataMock() with fetchUsageData()
-        fetchUsageDataMock(timeRange)
+        _fetchUsageDataMock(timeRange);
+        // todo replace _fetchActiveWindowsMock() with fetchActiveWindows()
+        _fetchActiveWindowsMock();
     }, []);
 
     return (
@@ -81,7 +93,8 @@ function UserInfoPage(props){
             <Filter sliderChangeHandler={handleSliderChange}
                     buttonClickHandler={handleButtonClick}
                     timeRange={timeRange}
-                    rangeChanged={rangeChanged}/>
+                    rangeChanged={rangeChanged}
+                    handlesRefs={handles}/>
             <ActiveWindows/>
         </div>
     );

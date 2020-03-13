@@ -38,6 +38,7 @@ export default function(props){
                                    pushable={1}
                                    onChange={sliderChangeHandler}
                                    onAfterChange={() => {rangeChanged(true)}}
+                                   ref={props.handlesRefs}
                             />
                         </Form.Group>
                     </Form>
