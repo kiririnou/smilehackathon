@@ -13,12 +13,6 @@ export default function (props) {
         <div id={'app'}>
             <Header/>
             <Switch>
-                {/*<Route path={'/'}>*/}
-                {/*    <MainPage/>*/}
-                {/*</Route>*/}
-                {/*<Route path={'/user/:id'}>*/}
-                {/*    <UserInfoPage/>*/}
-                {/*</Route>*/}
                 <Route exact path={'/'} component={MainPage}/>
                 <Route path={'/user/:userId'}>
                     <UserInfoPage/>

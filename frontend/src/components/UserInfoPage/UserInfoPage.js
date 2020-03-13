@@ -6,6 +6,7 @@ import ActiveWindows from "./ActiveWindows";
 import Filter from "./Filter";
 import {formatRequestParams, formatUsageData, unformatTime} from "../../utils";
 import {mockUsageData} from '../../_mockData';
+import ErrorPage from "../ErrorPage";
 
 import './css/UserInfoPage.css';
 
@@ -30,7 +31,6 @@ function UserInfoPage(props){
         mem: []
     });
     const [activeWindows, setActiveWindows] = useState([]);
-
 
     const handleSliderChange = () => {
         const from = handlesRef.current.handlesRefs['0'].props.value;
@@ -64,9 +64,8 @@ function UserInfoPage(props){
         // todo replace with real api url
         fetch(requestStr)
             .then(r => r.json())
-            .then(usageData => formatUsageData(usageData))
+            .then(data => formatUsageData(data))
             .then(usageData => setUsageData(usageData))
-            .catch(e => console.log(e))
     };
 
     const _fetchUsageDataMock = ({from, to}) => {
@@ -87,19 +86,18 @@ function UserInfoPage(props){
         fetch(requestStr)
             .then(r => r.json())
             .then(activeWindows => setActiveWindows(activeWindows))
-            .catch(e => console.log(e))
     };
 
     useEffect(() => {
-        // todo replace _fetchUsageDataMock() with fetchUsageData()
         fetchUsageData(timeRange);
-        // todo replace _fetchActiveWindowsMock() with fetchActiveWindows()
         fetchActiveWindows(timeRange);
     }, []);
 
     useEffect(() => {
         rangeChanged(true);
     }, [date]);
+
+    if(usageData.error || activeWindows.error) return <ErrorPage/>;
 
     return (
         <div id={'info-page'}>
@@ -114,8 +112,6 @@ function UserInfoPage(props){
             <ActiveWindows windows={activeWindows}/>
         </div>
     );
-
-
 }
 
 export default UserInfoPage;
