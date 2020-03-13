@@ -12,3 +12,16 @@
         grid-template-rows: 1fr 0.5fr 1fr;
     }
 }
+
+@media (max-width: 768px){
+    #info-page{
+        height: unset;
+    }
+}
+
+@media (max-width: 450px){
+    #info-page{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 2fr;
+    }
+}

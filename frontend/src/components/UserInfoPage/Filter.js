@@ -9,16 +9,6 @@ import 'rc-slider/assets/index.css';
 import {formatTime} from "../../utils";
 
 export default function(props){
-    function getTimeMarks() {
-        const timeStamps = {};
-
-        for(let minutes = 0; minutes <= 1440; minutes+=60){
-            timeStamps[minutes] = formatTime(minutes);
-        }
-
-        return timeStamps;
-    }
-
     const {sliderChangeHandler, buttonClickHandler, rangeChanged, timeRange: {from, to}} = props;
 
     return(
@@ -31,9 +21,11 @@ export default function(props){
                     <Form id={'filter-form'}>
                         <Form.Group>
                             <div id={'date-controls'}>
-                                <Form.Control type={'date'} id={'date-input'}/>
-                                <Form.Control type={'text'} id={'date-from'} value={formatTime(from)}/>
-                                <Form.Control type={'text'} id={'date-to'} value={formatTime(to)}/>
+                                <div className="date-controls-wrapper">
+                                    <Form.Control type={'date'} id={'date-input'}/>
+                                    <Form.Control type={'text'} id={'date-from'} value={formatTime(from)}/>
+                                    <Form.Control type={'text'} id={'date-to'} value={formatTime(to)}/>
+                                </div>
                                 <Button variant={'outline-primary'}
                                         id={'submit-date-btn'}
                                         type={'submit'}
@@ -41,7 +33,6 @@ export default function(props){
                             </div>
                             <Range min={0}
                                    max={1440}
-                                   marks={getTimeMarks()}
                                    defaultValue={[0, 1440]}
                                    step={1}
                                    pushable={1}

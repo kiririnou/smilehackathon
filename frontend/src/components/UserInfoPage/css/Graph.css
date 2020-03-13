@@ -9,4 +9,8 @@
         grid-row: 1;
         height: unset;
     }
+
+    #graph .card-body{
+        padding: 0;
+    }
 }
