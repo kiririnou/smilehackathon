@@ -1,57 +1,48 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import UserCard from "./UserCard";
 
 import './css/MainPage.css'
 import {mockUsers} from '../../_mockData';
 
-class MainPage extends Component {
-    constructor(props) {
-        super(props);
+function MainPage(props) {
+    let _timeout = null;
+    const [users, setUsers] = useState([]);
 
-        this.state = {
-            users: []
-        };
-
-
-        this.timeout = null;
-    }
-
-    fetchUsers = () => {
+    const fetchUsers = () => {
         // todo: change url before prod
         fetch('some-url.xyz/api/v1/users')
             .then(res => res.json())
             .then(users => {
-                this.setState({users});
-                this.timeout = setTimeout(this.fetchUsers, 500);
+                setUsers(users);
+                _timeout = setTimeout(fetchUsers, 500);
             })
             .catch(e => {
                 console.log(e);
-                this.timeout = setTimeout(this.fetchUsers, 500);
+                _timeout = setTimeout(fetchUsers, 500);
             })
     };
 
-    componentDidMount() {
+    useEffect(() => {
         // todo: run fetchUsers() on mount
-    }
+        return () => {
+            clearTimeout(_timeout);
+        }
+    }, []);
 
-    componentWillUnmount() {
-        clearTimeout(this.timeout);
-    }
+    return (
+        <div id={'main-page'}>
+            // todo replace mockUsers with users
+            {mockUsers.map(user =>
+                <UserCard username={user.username}
+                          hw_id={user.hw_id}
+                          mem={user.mem}
+                          title={user.title}
+                          key={user.id}
+                />
+            )}
+        </div>
+    );
 
-    render() {
-        return (
-            <div id={'main-page'}>
-                {mockUsers.map(user =>
-                    <UserCard username={user.username}
-                              hw_id={user.hw_id}
-                              mem={user.mem}
-                              title={user.title}
-                              key={user.id}
-                    />
-                )}
-            </div>
-        );
-    }
 }
 
 export default MainPage;
