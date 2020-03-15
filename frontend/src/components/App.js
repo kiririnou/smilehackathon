@@ -39,7 +39,7 @@ export default function (props) {
                 <Route exact path={'/'} >
                     <MainPage handleServerError={handleServerError}/>
                 </Route>
-                <Route path={'/user/:userId'}>
+                <Route path={'/user/:param'}>
                     <UserInfoPage handleServerError={handleServerError}/>
                 </Route>
             </Switch>

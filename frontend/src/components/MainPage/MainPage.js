@@ -38,6 +38,7 @@ function MainPage(props) {
                               mem={user.mem}
                               title={user.title}
                               key={user.id}
+                              userId={user.id}
                     />)
                 : <div style={{margin: '1rem', fontSize: '1.5rem'}}>Loading...</div>
             }

@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 import Graph from "./Graph";
 import ActiveWindows from "./ActiveWindows";
 import Filter from "./Filter";
-import {formatRequestParams, formatUsageData, dataTypes} from "../../utils";
+import {formatRequestParams, formatUsageData, dataTypes, getFullDate} from "../../utils";
 
 import './css/UserInfoPage.css';
 
@@ -15,13 +15,17 @@ function UserInfoPage(props){
         _hasRangeChanged = value;
     };
 
-    const {userId} = useParams();
+    const {param} = useParams();
+    const hwId = param.split('_')[0];
+    const userId = param.split('_')[1];
+
     const handlesRef = React.createRef();
+
     const [timeRange, setTimeRange] = useState({
         from: 0,
         to: 1439
     });
-    const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
+    const [date, setDate] = useState(getFullDate());
     const [usageData, setUsageData] = useState({
         cpu: [],
         mem: []
@@ -46,15 +50,20 @@ function UserInfoPage(props){
         e.preventDefault();
 
         if(_hasRangeChanged){
-            fetchUserData(timeRange, dataTypes.RESOURCE_USAGES, setUsageData);
-            fetchUserData(timeRange, dataTypes.ACTIVE_WINDOWS, setActiveWindows);
+            fetchUserData(dataTypes.RESOURCE_USAGES, usageData => setUsageData(formatUsageData(usageData)));
+            fetchUserData(dataTypes.ACTIVE_WINDOWS, activeWindows => setActiveWindows(activeWindows));
             rangeChanged(false);
         }
     };
 
-    const fetchUserData = async ({from, to}, dataType, stateHandler) => {
-        const {formattedFrom, formattedTo} = formatRequestParams(date, {from, to});
-        const requestStr = `http://51.158.177.205:1488/api/v1/${dataType}/${userId}?from=${formattedFrom}&to=${formattedTo}`;
+    const fetchUserData = async (dataType, callback) => {
+        let requestStr = '';
+
+        if(dataType === dataTypes.USERNAME) requestStr = `http://51.158.177.205:1488/api/v1/${dataType}/${userId}`;
+        if(dataType === dataTypes.ACTIVE_WINDOWS || dataType === dataTypes.RESOURCE_USAGES){
+            const {formattedFrom, formattedTo} = formatRequestParams(date, timeRange);
+            requestStr = `http://51.158.177.205:1488/api/v1/${dataType}/${hwId}?from=${formattedFrom}&to=${formattedTo}`;
+        }
 
         try {
             const response = await fetch(requestStr);
@@ -65,8 +74,7 @@ function UserInfoPage(props){
                 return;
             }
 
-            if(dataType === dataTypes.RESOURCE_USAGES) stateHandler(formatUsageData(userData));
-            if(dataType === dataTypes.ACTIVE_WINDOWS) stateHandler(userData);
+            callback(userData);
 
         } catch (e) {
             props.handleServerError('Server is not responding!');
@@ -74,8 +82,9 @@ function UserInfoPage(props){
     };
 
     useEffect(() => {
-        fetchUserData(timeRange, dataTypes.RESOURCE_USAGES, setUsageData);
-        fetchUserData(timeRange, dataTypes.ACTIVE_WINDOWS, setActiveWindows);
+        fetchUserData(dataTypes.USERNAME, userData => {document.title = `Tracker | ${userData.username}`});
+        fetchUserData(dataTypes.RESOURCE_USAGES, usageData => setUsageData(formatUsageData(usageData)));
+        fetchUserData(dataTypes.ACTIVE_WINDOWS, activeWindows => setActiveWindows(activeWindows));
     }, []);
 
     useEffect(() => {

@@ -8,7 +8,8 @@ function UserCard(props) {
         username,
         hw_id,
         mem,
-        title
+        title,
+        userId
     } = props;
 
     return (
@@ -22,7 +23,7 @@ function UserCard(props) {
                     <p className={'card-item mem'}>Memory usage: {mem}</p>
                     <p title={title} className={'card-item active-process'}>Active process: {title}</p>
                 </Card.Text>
-                <Card.Link href={`/user/${hw_id}`}>
+                <Card.Link href={`/user/${hw_id}_${userId}`}>
                     Details
                 </Card.Link>
             </Card.Body>

@@ -1,6 +1,7 @@
 export const dataTypes = {
     ACTIVE_WINDOWS: 'active-windows',
-    RESOURCE_USAGES: 'resource-usages'
+    RESOURCE_USAGES: 'resource-usages',
+    USERNAME: 'users'
 };
 
 export function formatTime(unformattedMinutes){
@@ -33,3 +34,18 @@ export function formatRequestParams(date, {from, to}) {
 
     return {formattedFrom, formattedTo};
 }
+
+export const getFullDate = (dateObj = new Date()) => {
+    const _format = (...values) => values.map(value => value > 9 ? value : '0' + value);
+
+    const year = dateObj.getFullYear();
+    const [
+        month,
+        day
+    ] = _format(
+        dateObj.getMonth() + 1,
+        dateObj.getDate()
+    );
+
+    return `${year}-${month}-${day}`;
+};
