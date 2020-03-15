@@ -1,3 +1,17 @@
 body {
     background-color: #f5eaea;
 }
+
+.toast{
+    position: fixed;
+    margin-top: 4rem;
+    width: 30rem;
+    z-index: 30;
+    margin-left: 1rem;
+}
+
+@media (max-width: 450px){
+    .toast{
+        width: 90%;
+    }
+}

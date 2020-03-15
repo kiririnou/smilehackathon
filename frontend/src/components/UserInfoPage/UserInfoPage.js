@@ -57,15 +57,19 @@ function UserInfoPage(props){
         }
     };
 
-    const fetchUsageData = ({from, to}) => {
+    const fetchUsageData = async ({from, to}) => {
         const {formattedFrom, formattedTo} = formatRequestParams(date, {from, to});
         const requestStr = `http://51.158.177.205:1488/api/v1/resource-usages/${userId}?from=${formattedFrom}&to=${formattedTo}`;
 
-        // todo replace with real api url
-        fetch(requestStr)
-            .then(r => r.json())
-            .then(data => formatUsageData(data))
-            .then(usageData => setUsageData(usageData))
+        const _localhost = `http://localhost:5000/api/v1/resource-usages/${userId}?from=${formattedFrom}&to=${formattedTo}`;
+
+        try {
+            const response = await fetch(_localhost);
+            const usageData = await response.json();
+            console.log(usageData)
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     const _fetchUsageDataMock = ({from, to}) => {
@@ -78,14 +82,16 @@ function UserInfoPage(props){
         setUsageData(usageData);
     };
 
-    const fetchActiveWindows = ({from, to}) => {
+    const fetchActiveWindows = async ({from, to}) => {
         const {formattedFrom, formattedTo} = formatRequestParams(date, {from, to});
         const requestStr = `http://51.158.177.205:1488/api/v1/active-windows/${userId}?from=${formattedFrom}&to=${formattedTo}`;
 
-        // todo replace with real api url
-        fetch(requestStr)
-            .then(r => r.json())
-            .then(activeWindows => setActiveWindows(activeWindows))
+        const _localhost = `http://localhost:5000/api/v1/active-windows/${userId}?from=${formattedFrom}&to=${formattedTo}`;
+        try {
+            const response = await fetch(_localhost);
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     useEffect(() => {
