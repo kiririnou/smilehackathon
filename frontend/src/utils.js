@@ -1,3 +1,8 @@
+export const dataTypes = {
+    ACTIVE_WINDOWS: 'active-windows',
+    RESOURCE_USAGES: 'resource-usages'
+};
+
 export function formatTime(unformattedMinutes){
     const hours = Math.floor((unformattedMinutes / 60));
     const minutes = Math.floor(unformattedMinutes % 60);

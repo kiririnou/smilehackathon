@@ -4,9 +4,8 @@ import {useParams} from 'react-router-dom';
 import Graph from "./Graph";
 import ActiveWindows from "./ActiveWindows";
 import Filter from "./Filter";
-import {formatRequestParams, formatUsageData, unformatTime} from "../../utils";
+import {formatRequestParams, formatUsageData, unformatTime, dataTypes} from "../../utils";
 import {mockUsageData} from '../../_mockData';
-import ErrorPage from "../ErrorPage";
 
 import './css/UserInfoPage.css';
 
@@ -50,13 +49,10 @@ function UserInfoPage(props){
         e.preventDefault();
 
         if(_hasRangeChanged){
-            // todo replace fetchUsageDataMock() with fetchUsageData()
-            fetchUsageData(timeRange);
-            fetchActiveWindows(timeRange);
+            fetchUserData(timeRange, dataTypes.RESOURCE_USAGES, setUsageData);
+            fetchUserData(timeRange, dataTypes.ACTIVE_WINDOWS, setActiveWindows);
             rangeChanged(false);
         }
-
-        // console.log(usageData)
     };
 
     const fetchUsageData = async ({from, to}) => {
@@ -73,6 +69,27 @@ function UserInfoPage(props){
             }
 
             setUsageData(formatUsageData(usageData))
+        } catch (e) {
+            props.handleServerError('Server is not responding!');
+        }
+    };
+
+    const fetchUserData = async ({from, to}, dataType, stateHandler) => {
+        const {formattedFrom, formattedTo} = formatRequestParams(date, {from, to});
+        const requestStr = `http://51.158.177.205:1488/api/v1/${dataType}/${userId}?from=${formattedFrom}&to=${formattedTo}`;
+
+        try {
+            const response = await fetch(requestStr);
+            const userData = await response.json();
+
+            if(userData.error) {
+                props.handleServerError(userData.error, 5000);
+                return;
+            }
+
+            if(dataType === dataTypes.RESOURCE_USAGES) stateHandler(formatUsageData(userData));
+            if(dataType === dataTypes.ACTIVE_WINDOWS) stateHandler(userData);
+
         } catch (e) {
             props.handleServerError('Server is not responding!');
         }
@@ -108,8 +125,8 @@ function UserInfoPage(props){
     };
 
     useEffect(() => {
-        fetchUsageData(timeRange);
-        fetchActiveWindows(timeRange);
+        fetchUserData(timeRange, dataTypes.RESOURCE_USAGES, setUsageData);
+        fetchUserData(timeRange, dataTypes.ACTIVE_WINDOWS, setActiveWindows);
     }, []);
 
     useEffect(() => {
