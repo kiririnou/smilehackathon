@@ -4,7 +4,7 @@ import './css/ActiveWindows.css';
 
 export default function ActiveWindows(props){
     function _formatUsageTime(dateString) {
-        return new Date(dateString).toLocaleTimeString();
+        return new Date(dateString.toString()).toLocaleTimeString();
     }
 
     return (

@@ -10,15 +10,6 @@ export function formatTime(unformattedMinutes){
     return hours + ':' + (minutes >= 10 ? minutes : '0'+minutes);
 }
 
-export function unformatTime(formattedTime) {
-    const split = formattedTime.split(':');
-
-    const hours = parseInt(split[0]) * 60;
-    const minutes = parseInt(split[1]);
-
-    return hours + minutes;
-}
-
 export function formatUsageData(data) {
     const formattedUsageData = {
         cpu: [],
