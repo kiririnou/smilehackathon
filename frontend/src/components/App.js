@@ -12,21 +12,28 @@ import Toast from "react-bootstrap/Toast";
 
 export default function (props) {
     const [show, setShow] = useState(false);
-    const handleServerError = () => setShow(true);
+    const [errorText, setErrorText] = useState('');
+    const [delay, setDelay] = useState(3000);
+
+    const handleServerError = (errorText, delay=3000) => {
+        setShow(true);
+        setErrorText(errorText);
+        setDelay(delay);
+    };
 
     return (
         <div id={'app'}>
             <Header/>
             <Toast onClose={() => setShow(false)}
                    show={show}
-                   delay={3000}
+                   delay={delay}
                    autohide
                    style={{
                        fontSize: '1rem',
                        backgroundColor: 'rgba(255,100,100,0.48)'
                    }}
             >
-                <Toast.Body>Server is not responding!</Toast.Body>
+                <Toast.Body>{errorText}</Toast.Body>
             </Toast>
             <Switch>
                 <Route exact path={'/'} >

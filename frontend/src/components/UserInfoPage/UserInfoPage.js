@@ -55,20 +55,26 @@ function UserInfoPage(props){
             fetchActiveWindows(timeRange);
             rangeChanged(false);
         }
+
+        // console.log(usageData)
     };
 
     const fetchUsageData = async ({from, to}) => {
         const {formattedFrom, formattedTo} = formatRequestParams(date, {from, to});
         const requestStr = `http://51.158.177.205:1488/api/v1/resource-usages/${userId}?from=${formattedFrom}&to=${formattedTo}`;
 
-        const _localhost = `http://localhost:5000/api/v1/resource-usages/${userId}?from=${formattedFrom}&to=${formattedTo}`;
-
         try {
-            const response = await fetch(_localhost);
+            const response = await fetch(requestStr);
             const usageData = await response.json();
-            console.log(usageData)
+
+            if(usageData.error || activeWindows.error) {
+                props.handleServerError(usageData.error || activeWindows.error, 5000);
+                return;
+            }
+
+            setUsageData(formatUsageData(usageData))
         } catch (e) {
-            console.log(e);
+            props.handleServerError('Server is not responding!');
         }
     };
 
@@ -86,11 +92,18 @@ function UserInfoPage(props){
         const {formattedFrom, formattedTo} = formatRequestParams(date, {from, to});
         const requestStr = `http://51.158.177.205:1488/api/v1/active-windows/${userId}?from=${formattedFrom}&to=${formattedTo}`;
 
-        const _localhost = `http://localhost:5000/api/v1/active-windows/${userId}?from=${formattedFrom}&to=${formattedTo}`;
         try {
-            const response = await fetch(_localhost);
+            const response = await fetch(requestStr);
+            const activeWindows = await response.json();
+
+            if(usageData.error || activeWindows.error) {
+                props.handleServerError(usageData.error || activeWindows.error, 5000);
+                return;
+            }
+
+            setActiveWindows(activeWindows);
         } catch (e) {
-            console.log(e);
+            props.handleServerError('Server is not responding!');
         }
     };
 
@@ -102,8 +115,6 @@ function UserInfoPage(props){
     useEffect(() => {
         rangeChanged(true);
     }, [date]);
-
-    if(usageData.error || activeWindows.error) return <ErrorPage/>;
 
     return (
         <div id={'info-page'}>

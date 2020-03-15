@@ -15,14 +15,14 @@ function MainPage(props) {
         const _localhost = `http://localhost:5000/api/v1/users`;
 
         try {
-            const response = await fetch(_localhost);
+            const response = await fetch('http://51.158.177.205:1488/api/v1/users');
             const users = await response.json();
 
             setUsers(users);
 
-            _timeout = setTimeout(fetchUsers, 5000);
+            _timeout = setTimeout(fetchUsers, 500);
         } catch (e) {
-            props.handleServerError();
+            props.handleServerError('Server is not responding!');
             _timeout = setTimeout(fetchUsers, 5000);
         }
     };
@@ -36,14 +36,16 @@ function MainPage(props) {
 
     return (
         <div id={'main-page'}>
-            {mockUsers.map(user =>
-                <UserCard username={user.username}
-                          hw_id={user.hw_id}
-                          mem={user.mem}
-                          title={user.title}
-                          key={user.id}
-                />
-            )}
+            {users.length
+                ? users.map(user =>
+                    <UserCard username={user.username}
+                              hw_id={user.hw_id}
+                              mem={user.mem}
+                              title={user.title}
+                              key={user.id}
+                    />)
+                : <div style={{margin: '1rem', fontSize: '1.5rem'}}>Loading...</div>
+            }
         </div>
     );
 }
