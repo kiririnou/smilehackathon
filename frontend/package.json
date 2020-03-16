@@ -1,0 +1,47 @@
+{
+  "name": "smilehackathon-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiririnou/smilehackathon.git"
+  },
+  "keywords": [
+    "smilehackathon"
+  ],
+  "author": "dvoyakiy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kiririnou/smilehackathon/issues"
+  },
+  "homepage": "https://github.com/kiririnou/smilehackathon#readme",
+  "devDependencies": {
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "webpack-dev-server": "^3.1.9"
+  },
+  "dependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "*",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.5",
+    "bootstrap": "^4.4.1",
+    "chart.js": "^2.9.3",
+    "css-loader": "^2.1.1",
+    "mini-css-extract-plugin": "^0.5.0",
+    "rc-slider": "^9.2.2",
+    "react-bootstrap": "^1.0.0-beta.17",
+    "react-chartjs-2": "^2.9.0",
+    "react-router-dom": "^5.1.2",
+    "regenerator-runtime": "^0.13.5",
+    "sass-loader": "^8.0.2",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  }
+}

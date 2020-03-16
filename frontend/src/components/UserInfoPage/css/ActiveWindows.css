@@ -1,0 +1,47 @@
+#active-windows{
+    overflow-y: auto;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+}
+
+#active-windows #columns{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+}
+
+#active-windows #windows{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+    overflow-y: auto;
+}
+
+#active-windows #windows .window{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.5rem;
+}
+
+.window-time{
+    width: 35%;
+    font-style: italic;
+}
+
+.window-title{
+    width: 60%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 1rem;
+}
+
+@media (max-width: 1024px){
+    #active-windows{
+        grid-column: 1;
+        grid-row: 3;
+    }
+}
