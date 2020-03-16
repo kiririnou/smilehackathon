@@ -1,0 +1,44 @@
+.form-group {
+  margin: 0;
+
+  .form-control {
+    color: #AFBDD1;
+    background-color: #313C4E;
+    border: transparent;
+
+    &:focus {
+      box-shadow: none;
+    }
+    &:focus ~ .form-label{
+      color: #ffff;
+    }
+  }
+
+  //number-arrow
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  //date-time
+  ::-webkit-inner-spin-button { display: none; }
+  ::-webkit-calendar-picker-indicator {
+    transition: visibility 0s, opacity 0.5s linear;
+    background: transparent;
+  }
+}
+
+.rc-slider {
+  .rc-slider-handle {
+    background:#2196F3;
+    border: none;
+  }
+  .rc-slider-rail {
+    background: #56657F;
+  }
+
+  .rc-slider-track{
+    background:#2196F3;
+  }
+}

@@ -1,0 +1,26 @@
+//Main
+$main-fs: 14px;
+$main-fw: 400;
+$module: 10px;
+$module-rem: ($module / $main-fs) * 1rem;
+$shadow: 0 18px 24px rgba(#000,.12);
+$shadow-hover: 0px 8px 24px rgba(#000,.12);
+$shape: 6px;
+$animation: ease-in-out;
+
+//Main
+$main-bg: #313C4E;
+$main-color: #56657F;
+
+//Nav
+$navbar-bg: #212936;
+$navbar-col: #8997B1;
+
+//Header
+$header-color: #AFBDD1;
+
+@function toRem($value) {
+  $remSize: $value / $main-fs;
+  @return #{$remSize}rem;
+}
+  

@@ -28,6 +28,15 @@ module.exports = {
                     MiniCssExtractPlugin.loader,
                     'css-loader'
                 ]
+            },
+            {
+                test: /\.scss$/,
+                exclude: /(node_modules|dist|public)/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    'sass-loader'
+                ]
             }
         ]
     },

@@ -1,0 +1,315 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  background: #313C4E;
+  color: #56657F;
+}
+
+.page {
+  display: block;
+  height: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.page .app-main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+}
+
+.page .app-main .main-wrap {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.page .app-main .main-wrap .main-content {
+  padding: 2.14286rem;
+}
+
+.page .app-main .main-wrap .main-content .process-history .card {
+  height: 88vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+@media (max-width: 991px) {
+  .page .app-main .main-wrap .main-content .process-history .card {
+    height: 50vh;
+  }
+}
+
+.page .app-main .main-wrap .main-content .process-info .card:nth-child(1) {
+  height: 70vh;
+}
+
+@media (max-width: 991px) {
+  .page .app-main .main-wrap .main-content .process-info .card:nth-child(1) {
+    height: unset;
+  }
+}
+
+.page .app-main .main-wrap .main-content .process-info .card:nth-child(2) {
+  height: 15vh;
+}
+
+@media (max-width: 991px) {
+  .page .app-main .main-wrap .main-content .process-info .card:nth-child(2) {
+    height: unset;
+  }
+}
+
+.card {
+  background: #212936;
+  background-size: cover;
+  border: 0;
+  border-radius: 6px;
+  display: block;
+  margin-bottom: 1.64286rem;
+  position: relative;
+}
+
+.card .card-header {
+  background: none;
+  border: 0;
+  font-size: 2rem;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}
+
+.card .card-header.card-sub-header {
+  font-size: 1.2rem;
+}
+
+.card .card-body {
+  display: block;
+  padding: 1.42857rem 0 0;
+  position: relative;
+}
+
+.card .card-body .text-overflow {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.card .card-body .text-overflow.w-70 {
+  width: 70%;
+}
+
+.card.border-light {
+  -webkit-box-shadow: 0 18px 24px rgba(0, 0, 0, 0.12);
+          box-shadow: 0 18px 24px rgba(0, 0, 0, 0.12);
+  -webkit-transition: -webkit-box-shadow 0.2s ease-in-out;
+  transition: -webkit-box-shadow 0.2s ease-in-out;
+  transition: box-shadow 0.2s ease-in-out;
+  transition: box-shadow 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
+}
+
+.card.border-light .card-header {
+  padding: 0.71429rem 1.42857rem 0;
+}
+
+.card.border-light .card-body {
+  padding: 1.42857rem;
+}
+
+.card.border-light:hover {
+  -webkit-box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.12);
+          box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.nav-bar {
+  background: #212936;
+  color: #8997B1;
+  display: block;
+}
+
+.nav-bar .nav-wrap {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  padding: 0 2.14286rem;
+}
+
+.nav-bar .nav-wrap .menu-ul {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  padding: 0.71429rem 0;
+  margin: 0;
+}
+
+.nav-bar .nav-wrap .menu-ul .menu-item {
+  list-style: none;
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.nav-bar .nav-wrap .menu-ul .menu-item .item-link {
+  font-size: 1.42857rem;
+  padding: 0.85714rem 2.85714rem;
+  color: #8997B1;
+  -webkit-transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.nav-bar .nav-wrap .menu-ul .menu-item .item-link .link-text {
+  text-align: center;
+}
+
+.nav-bar .nav-wrap .menu-ul .menu-item .item-link:hover {
+  color: #FFFFFF;
+  background: #1976D2;
+}
+
+a {
+  color: #4d4646;
+  text-decoration: none;
+  -webkit-transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+  position: relative;
+}
+
+a:hover {
+  color: #4d4646;
+  outline: none;
+  text-decoration: none;
+}
+
+h2 {
+  color: #AFBDD1;
+}
+
+.btn {
+  height: 3.57143rem !important;
+  text-transform: uppercase;
+}
+
+.primary-color {
+  color: #AFBDD1;
+}
+
+.break-all {
+  word-break: break-all;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+.w-70 {
+  width: 70%;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.1);
+          box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar {
+  background: rgba(0, 0, 0, 0.87);
+  position: absolute;
+  width: 2px;
+  height: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #56657F;
+}
+
+.form-group {
+  margin: 0;
+}
+
+.form-group .form-label {
+  position: absolute;
+  bottom: 1.71429rem;
+  margin-left: 0.71429rem;
+  color: #56657F;
+  font-size: 0.85714rem;
+  -webkit-transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+}
+
+.form-group .form-control {
+  padding-top: 1.42857rem;
+  color: #AFBDD1;
+  background-color: #313C4E;
+  height: 3.57143rem;
+  border-radius: 4px 4px 0 0;
+  border: transparent;
+}
+
+.form-group .form-control:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.form-group .form-control:focus ~ .form-label {
+  color: #ffff;
+}
+
+.form-group input::-webkit-outer-spin-button,
+.form-group input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-group ::-webkit-inner-spin-button {
+  display: none;
+}
+
+.form-group ::-webkit-calendar-picker-indicator {
+  -webkit-transition: visibility 0s, opacity 0.5s linear;
+  transition: visibility 0s, opacity 0.5s linear;
+  background: transparent;
+}
+
+.ui-slider {
+  background: #56657F;
+  border: transparent !important;
+  max-height: 0.14286rem;
+}
+
+.ui-slider .ui-slider-handle {
+  border-radius: 500px;
+  top: -0.65em !important;
+  width: 1.64286rem;
+  height: 1.64286rem;
+}
+
+.ui-slider .ui-slider-handle:focus {
+  border: none;
+  outline: unset;
+}
+
+.ui-slider .ui-slider-range {
+  background: #2196F3;
+}
+/*# sourceMappingURL=style.css.map */
