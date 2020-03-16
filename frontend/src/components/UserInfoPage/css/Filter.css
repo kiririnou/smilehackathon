@@ -1,0 +1,78 @@
+#filter{
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#date-input{
+    margin-bottom: 1rem;
+    width: 30%;
+    margin-right: 2rem;
+}
+
+#filter .date-controls-wrapper{
+    display: flex;
+    flex-direction: row;
+}
+
+#date-controls{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+}
+
+#date-controls #date-from, #date-controls #date-to{
+    width: 30%;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+#submit-date-btn{
+    height: 100%;
+    width: 20%;
+    margin-left: 4.5rem;
+}
+
+@media (max-width: 1024px){
+    #filter{
+        grid-column: 1;
+        grid-row: 2;
+    }
+}
+
+@media (max-width: 450px){
+    #filter .form-group{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #filter #date-controls{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1.5rem;
+    }
+
+    #filter #submit-date-btn{
+        margin: 0;
+        width: 100%;
+    }
+
+    #date-input{
+        margin-bottom: 1rem;
+        width: 30%;
+        margin-right: 1rem;
+    }
+
+    #date-controls #date-from, #date-controls #date-to{
+        width: 30%;
+        margin-right: 0;
+    }
+
+    #filter .date-controls-wrapper{
+        display: flex;
+        flex-direction: row;
+    }
+
+    #filter .card-body{
+        padding-bottom: 0.8rem;
+    }
+}
