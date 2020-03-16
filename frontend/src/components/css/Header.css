@@ -8,3 +8,9 @@
 .navbar-brand span{
     color: #7fcd91
 }
+
+.theme-picker{
+    font-size: 1.2rem;
+    margin-left: auto;
+    width: 10rem;
+}
