@@ -50,10 +50,10 @@ class ResourceUsagesAPI(MethodView):
             mem_data.append((int(resource_usage.time.timestamp()), resource_usage.mem))
 
         decimated_cpu_data = downsample_time_series_lttb(cpu_data, threshold)
-        ddecimated_mem_data = downsample_time_series_lttb(mem_data, threshold)
+        decimated_mem_data = downsample_time_series_lttb(mem_data, threshold)
 
         for i in range(len(decimated_cpu_data)):
-            response.append([decimated_cpu_data[0], decimated_cpu_data[1], ddecimated_mem_data[1]])
+            response.append([decimated_cpu_data[0], decimated_cpu_data[1], decimated_mem_data[2]])
 
         return jsonify(response), 200
 
