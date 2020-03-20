@@ -1,4 +1,5 @@
 from functools import wraps
+from datetime import datetime
 
 from peewee import IntegrityError
 from dateutil.parser import parse as parse_datetime
@@ -53,7 +54,11 @@ class ResourceUsagesAPI(MethodView):
         decimated_mem_data = downsample_time_series_lttb(mem_data, threshold)
 
         for i in range(len(decimated_cpu_data)):
-            response.append([decimated_cpu_data[i-1][0], decimated_cpu_data[i-1][1], decimated_mem_data[i-1][1]])
+            response.append([
+                str(datetime.fromtimestamp(decimated_cpu_data[i-1][0])),
+                decimated_cpu_data[i-1][1],
+                decimated_mem_data[i-1][1]]
+            )
 
         return jsonify(response), 200
 
