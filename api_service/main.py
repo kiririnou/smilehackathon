@@ -53,7 +53,7 @@ class ResourceUsagesAPI(MethodView):
         decimated_mem_data = downsample_time_series_lttb(mem_data, threshold)
 
         for i in range(len(decimated_cpu_data)):
-            response.append([decimated_cpu_data[i-1][0], decimated_cpu_data[i-1][1], decimated_mem_data[i-1][2]])
+            response.append([decimated_cpu_data[i-1][0], decimated_cpu_data[i-1][1], decimated_mem_data[i-1][1]])
 
         return jsonify(response), 200
 
