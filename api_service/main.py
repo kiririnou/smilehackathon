@@ -42,7 +42,7 @@ class ResourceUsagesAPI(MethodView):
             ResourceUsage.time, ResourceUsage.cpu, ResourceUsage.mem
         ).where(
             (ResourceUsage.hw_id == hw_id) & (ResourceUsage.time.between(from_datetime, to_datetime))
-        )
+        ).order_by(ResourceUsage.time)
 
         cpu_data = []
         mem_data = []
