@@ -19,6 +19,9 @@ def split_data(data, num_of_buckets):
 
 
 def downsample_time_series_lttb(data, threshold):
+    if len(data) < 3:
+        return []
+
     buckets = [
         [data[0]],
         *list(split_data(data[1:-1], threshold-2)),
