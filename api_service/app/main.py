@@ -7,6 +7,7 @@ from flask.views import MethodView
 from flask_cors import CORS
 
 from models import User, ResourceUsage, ActiveWindow
+from utils import downsample_time_series_lttb
 
 app = Flask(__name__)
 CORS(app)
@@ -31,18 +32,28 @@ class ResourceUsagesAPI(MethodView):
         try:
             from_datetime = parse_datetime(request.args.get('from', "2020-01-01T00:00Z"))
             to_datetime = parse_datetime(request.args.get('to', "2040-01-01T00:00Z"))
+            threshold = int(request.args.get('threshold', "30"))
 
         except ValueError as e:
             return jsonify({'error': str(e)}), 400
 
-        resource_usages_query = ResourceUsage.select().where(
+        resource_usages_query = ResourceUsage.select(
+            ResourceUsage.time, ResourceUsage.cpu, ResourceUsage.mem
+        ).where(
             (ResourceUsage.hw_id == hw_id) & (ResourceUsage.time.between(from_datetime, to_datetime))
         )
 
+        cpu_data = []
+        mem_data = []
         for resource_usage in resource_usages_query:
-            response.append(
-                [str(resource_usage.time), resource_usage.cpu, resource_usage.mem]
-            )
+            cpu_data.append((int(resource_usage.time.timestamp()), resource_usage.cpu))
+            mem_data.append((int(resource_usage.time.timestamp()), resource_usage.mem))
+
+        decimated_cpu_data = downsample_time_series_lttb(cpu_data, threshold)
+        ddecimated_mem_data = downsample_time_series_lttb(mem_data, threshold)
+
+        for i in range(len(decimated_cpu_data)):
+            response.append([decimated_cpu_data[0], decimated_cpu_data[1], ddecimated_mem_data[1]])
 
         return jsonify(response), 200
 
@@ -57,7 +68,7 @@ class ResourceUsagesAPI(MethodView):
         except (ValueError, KeyError) as e:
             return jsonify({'error': f"{type(e).__name__} - {e}"}), 400
 
-        ResourceUsage.create(hw_id=hw_id, time=time, cpu=cpu, mem=mem)
+        ResourceUsage.create(hw_id=hw_id, time=time.replace(tzinfo=None), cpu=cpu, mem=mem)
         return jsonify({'message': "Resource usage created"}), 201
 
 
