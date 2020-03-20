@@ -43,7 +43,7 @@ class ResourceUsagesAPI(MethodView):
         ).where(
             (ResourceUsage.hw_id == hw_id) & (ResourceUsage.time.between(from_datetime, to_datetime))
         ).order_by(
-            ResourceUsage.time.desc()
+            ResourceUsage.time.asc()
         )
 
         cpu_data = []
