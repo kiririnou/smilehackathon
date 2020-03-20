@@ -5,7 +5,7 @@ module.exports = {
     mode: 'production',
     entry: './src/index.js',
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'static'),
         filename: 'bundle.js',
         publicPath: '/'
     },
@@ -51,7 +51,7 @@ module.exports = {
         port: 9000,
         hot: true,
         watchContentBase: true,
-        publicPath: '/dist/',
+        publicPath: '/static/',
         host: '0.0.0.0',
         historyApiFallback: true
     }
