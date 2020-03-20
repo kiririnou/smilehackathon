@@ -57,7 +57,7 @@ class ResourceUsagesAPI(MethodView):
 
         for i in range(len(decimated_cpu_data)-1):
             response.append([
-                str(datetime.fromtimestamp(decimated_cpu_data[i-1][0])),
+                str(datetime.fromtimestamp(decimated_cpu_data[i][0])),
                 decimated_cpu_data[i][1],
                 decimated_mem_data[i][1]]
             )
