@@ -1,7 +1,7 @@
 export const dataTypes = {
-    ACTIVE_WINDOWS: 'active-windows',
-    RESOURCE_USAGES: 'resource-usages',
-    USERNAME: 'users'
+    ACTIVE_WINDOWS: 'ACTIVE_WINDOWS',
+    RESOURCE_USAGES: 'RESOURCE_USAGES',
+    USERNAME: 'USERNAME'
 };
 
 export function formatTime(unformattedMinutes){

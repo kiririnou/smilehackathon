@@ -10,7 +10,7 @@ function MainPage(props) {
 
     const fetchUsers = async () => {
         try {
-            const response = await fetch('http://51.158.177.205:1488/api/v1/users');
+            const response = await fetch(new URL(process.env.USERNAME, process.env.API_URL).href);
             const users = await response.json();
 
             setUsers(users);

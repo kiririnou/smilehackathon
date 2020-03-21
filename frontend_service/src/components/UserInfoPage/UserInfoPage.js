@@ -9,6 +9,8 @@ import {formatRequestParams, formatUsageData, dataTypes, getFullDate} from "../.
 import './css/UserInfoPage.css';
 
 function UserInfoPage(props){
+    const API_URL = process.env.API_URL;
+
     let _hasRangeChanged = false;
 
     const rangeChanged = (value) => {
@@ -31,6 +33,8 @@ function UserInfoPage(props){
         mem: []
     });
     const [activeWindows, setActiveWindows] = useState([]);
+    const {formattedFrom, formattedTo} = formatRequestParams(date, timeRange);
+    const _query = `${hwId}?from=${formattedFrom}&to=${formattedTo}`;
 
     const handleSliderChange = () => {
         const from = handlesRef.current.handlesRefs['0'].props.value;
@@ -59,11 +63,9 @@ function UserInfoPage(props){
     const fetchUserData = async (dataType, callback) => {
         let requestStr = '';
 
-        if(dataType === dataTypes.USERNAME) requestStr = `http://51.158.177.205:1488/api/v1/${dataType}/${userId}`;
-        if(dataType === dataTypes.ACTIVE_WINDOWS || dataType === dataTypes.RESOURCE_USAGES){
-            const {formattedFrom, formattedTo} = formatRequestParams(date, timeRange);
-            requestStr = `http://51.158.177.205:1488/api/v1/${dataType}/${hwId}?from=${formattedFrom}&to=${formattedTo}`;
-        }
+        if(dataType === dataTypes.USERNAME) requestStr = new URL(`${process.env.USERNAME}/${userId}`, API_URL);
+        if(dataType === dataTypes.ACTIVE_WINDOWS) requestStr = new URL(`${process.env.ACTIVE_WINDOWS}/${_query}`, API_URL);
+        if(dataType === dataTypes.RESOURCE_USAGES) requestStr = new URL(`${process.env.RESOURCE_USAGES}/${_query}`, API_URL);
 
         try {
             const response = await fetch(requestStr);
