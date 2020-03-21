@@ -7,9 +7,9 @@ import Header from "./Header";
 import MainPage from "./MainPage/MainPage";
 import UserInfoPage from "./UserInfoPage/UserInfoPage";
 
-import './css/App.css';
+import './static/css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import './css/dark-mode/style.scss';
+import './static/css/dark-mode/style.scss';
 
 
 export default function (props) {

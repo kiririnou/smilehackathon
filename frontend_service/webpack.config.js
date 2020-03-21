@@ -2,7 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'static'),
@@ -37,6 +37,14 @@ module.exports = {
                     "css-loader",
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.(svg)$/,
+                loader: 'file-loader',
+                options: {
+                    publicPath: '/static/',
+                    name: '[name].[ext]'
+                }
             }
         ]
     },
